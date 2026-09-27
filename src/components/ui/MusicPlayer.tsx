@@ -10,16 +10,16 @@ interface Props {
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
-function MusikIcon({ playing }: { playing: boolean }) {
+function PlayIcon({ playing }: { playing: boolean }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
       {playing ? (
         <>
-          <rect x="2" y="2" width="3.5" height="10" rx="1" fill="currentColor" />
-          <rect x="8.5" y="2" width="3.5" height="10" rx="1" fill="currentColor" />
+          <rect x="1.5" y="1.5" width="3.5" height="10" rx="1" fill="currentColor" />
+          <rect x="8" y="1.5" width="3.5" height="10" rx="1" fill="currentColor" />
         </>
       ) : (
-        <path d="M3 2.5L12 7L3 11.5V2.5Z" fill="currentColor" />
+        <path d="M2.5 2L11.5 6.5L2.5 11V2Z" fill="currentColor" />
       )}
     </svg>
   )
@@ -27,36 +27,60 @@ function MusikIcon({ playing }: { playing: boolean }) {
 
 function SkipIcon({ direction }: { direction: 'prev' | 'next' }) {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
       {direction === 'next' ? (
         <>
-          <path d="M1 2L7 6L1 10V2Z" fill="currentColor" />
-          <rect x="8.5" y="2" width="2" height="8" rx="0.75" fill="currentColor" />
+          <path d="M1 1.5L6.5 5.5L1 9.5V1.5Z" fill="currentColor" />
+          <rect x="7.5" y="1.5" width="2" height="8" rx="0.75" fill="currentColor" />
         </>
       ) : (
         <>
-          <path d="M11 2L5 6L11 10V2Z" fill="currentColor" />
-          <rect x="1.5" y="2" width="2" height="8" rx="0.75" fill="currentColor" />
+          <path d="M10 1.5L4.5 5.5L10 9.5V1.5Z" fill="currentColor" />
+          <rect x="1.5" y="1.5" width="2" height="8" rx="0.75" fill="currentColor" />
         </>
       )}
     </svg>
   )
 }
 
+function MusicBars() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 14, paddingBottom: 1 }}>
+      {[1, 2, 3].map((i) => (
+        <div
+          key={i}
+          style={{
+            width: 2,
+            background: 'rgba(255,255,255,0.45)',
+            borderRadius: 999,
+            animation: `music-bar-${i} ${0.7 + i * 0.15}s ease-in-out infinite`,
+          }}
+        />
+      ))}
+      <style>{`
+        @keyframes music-bar-1 { 0%,100%{height:3px} 50%{height:12px} }
+        @keyframes music-bar-2 { 0%,100%{height:8px}  50%{height:4px}  }
+        @keyframes music-bar-3 { 0%,100%{height:5px}  50%{height:10px} }
+      `}</style>
+    </div>
+  )
+}
+
 export default function MusicPlayer({ playlist }: Props) {
   const [trackIndex, setTrackIndex] = useState(0)
-  const [playing, setPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [visible, setVisible] = useState(false)
+  const [playing, setPlaying]       = useState(false)
+  const [progress, setProgress]     = useState(0)
+  const [visible, setVisible]       = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const currentTrack = playlist[trackIndex]
+  const hasTrack = playlist.length > 0
+  const currentTrack = hasTrack ? playlist[trackIndex] : null
 
+  // Always show the player after the intro settles
   useEffect(() => {
-    if (!playlist.length) return
-    const t = setTimeout(() => setVisible(true), 4200)
+    const t = setTimeout(() => setVisible(true), 4000)
     return () => clearTimeout(t)
-  }, [playlist.length])
+  }, [])
 
   useEffect(() => {
     if (!audioRef.current || !currentTrack) return
@@ -76,6 +100,7 @@ export default function MusicPlayer({ playlist }: Props) {
   }, [playlist.length])
 
   const togglePlay = () => {
+    if (!hasTrack) return
     const a = audioRef.current
     if (!a) return
     if (playing) {
@@ -87,6 +112,7 @@ export default function MusicPlayer({ playlist }: Props) {
   }
 
   const skip = (dir: 'prev' | 'next') => {
+    if (!hasTrack) return
     setTrackIndex((i) => {
       if (dir === 'next') return (i + 1) % playlist.length
       return (i - 1 + playlist.length) % playlist.length
@@ -102,190 +128,198 @@ export default function MusicPlayer({ playlist }: Props) {
     setProgress(pct)
   }
 
-  if (!playlist.length) return null
+  const btnBase: React.CSSProperties = {
+    background: 'none',
+    border: 'none',
+    cursor: hasTrack ? 'pointer' : 'default',
+    color: hasTrack ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.15)',
+    padding: 4,
+    display: 'flex',
+    alignItems: 'center',
+    transition: 'color 0.2s',
+    flexShrink: 0,
+  }
 
   return (
     <>
-      <audio
-        ref={audioRef}
-        loop={playlist.length === 1}
-        onTimeUpdate={onTimeUpdate}
-        onEnded={onEnded}
-        preload="auto"
-      />
+      {hasTrack && (
+        <audio
+          ref={audioRef}
+          loop={playlist.length === 1}
+          onTimeUpdate={onTimeUpdate}
+          onEnded={onEnded}
+          preload="auto"
+        />
+      )}
 
       <AnimatePresence>
         {visible && (
           <motion.div
+            key="player"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.8, ease: EASE }}
             style={{
               position: 'fixed',
-              bottom: 24,
+              bottom: 20,
               left: '50%',
               transform: 'translateX(-50%)',
               zIndex: 40,
-              background: 'rgba(0,0,0,0.88)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
+              background: 'rgba(6,6,6,0.92)',
+              backdropFilter: 'blur(18px)',
+              WebkitBackdropFilter: 'blur(18px)',
               border: '1px solid rgba(255,255,255,0.07)',
-              borderRadius: '999px',
-              padding: '10px 18px',
+              borderRadius: 999,
+              padding: '9px 16px',
               display: 'flex',
               alignItems: 'center',
-              gap: 14,
-              minWidth: 280,
+              gap: 12,
+              minWidth: 260,
               maxWidth: 'calc(100vw - 32px)',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.6)',
             }}
           >
             {/* Prev */}
             <button
               onClick={() => skip('prev')}
-              aria-label="Previous track"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: 'rgba(255,255,255,0.4)',
-                padding: 4,
-                display: 'flex',
-                alignItems: 'center',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
+              aria-label="Previous"
+              style={btnBase}
+              onMouseEnter={(e) => { if (hasTrack) e.currentTarget.style.color = 'rgba(255,255,255,0.75)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = hasTrack ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.15)' }}
             >
               <SkipIcon direction="prev" />
             </button>
 
-            {/* Play/pause */}
+            {/* Play / Pause */}
             <button
               onClick={togglePlay}
               aria-label={playing ? 'Pause' : 'Play'}
               style={{
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                background: hasTrack ? 'rgba(255,255,255,0.09)' : 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.09)',
                 borderRadius: '50%',
                 width: 32,
                 height: 32,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                cursor: 'pointer',
-                color: 'rgba(255,255,255,0.85)',
+                cursor: hasTrack ? 'pointer' : 'default',
+                color: hasTrack ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.2)',
                 transition: 'background 0.2s',
                 flexShrink: 0,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
+              onMouseEnter={(e) => { if (hasTrack) e.currentTarget.style.background = 'rgba(255,255,255,0.15)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = hasTrack ? 'rgba(255,255,255,0.09)' : 'rgba(255,255,255,0.04)' }}
             >
-              <MusikIcon playing={playing} />
+              <PlayIcon playing={playing} />
             </button>
 
-            {/* Track info + progress */}
+            {/* Track info */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 10,
-                  letterSpacing: '0.08em',
-                  color: 'rgba(255,255,255,0.75)',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  marginBottom: 4,
-                }}
-              >
-                {currentTrack.title}
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 9,
-                  letterSpacing: '0.06em',
-                  color: 'rgba(255,255,255,0.35)',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  marginBottom: 6,
-                }}
-              >
-                {currentTrack.artist}
-              </div>
-              {/* Progress bar */}
-              <div
-                onClick={seek}
-                style={{
-                  height: 2,
-                  background: 'rgba(255,255,255,0.1)',
-                  borderRadius: '999px',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-              >
+              {hasTrack ? (
+                <>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 10,
+                      letterSpacing: '0.08em',
+                      color: 'rgba(255,255,255,0.75)',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      marginBottom: 3,
+                    }}
+                  >
+                    {currentTrack!.title}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 9,
+                      letterSpacing: '0.06em',
+                      color: 'rgba(255,255,255,0.3)',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      marginBottom: 5,
+                    }}
+                  >
+                    {currentTrack!.artist}
+                  </div>
+                  {/* Progress bar */}
+                  <div
+                    onClick={seek}
+                    style={{
+                      height: 2,
+                      background: 'rgba(255,255,255,0.08)',
+                      borderRadius: 999,
+                      cursor: 'pointer',
+                      position: 'relative',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        height: '100%',
+                        width: `${progress * 100}%`,
+                        background: 'rgba(255,255,255,0.5)',
+                        borderRadius: 999,
+                        transition: 'width 0.1s linear',
+                      }}
+                    />
+                  </div>
+                </>
+              ) : (
+                /* Idle state — no tracks loaded */
                 <div
                   style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: 0,
-                    height: '100%',
-                    width: `${progress * 100}%`,
-                    background: 'rgba(255,255,255,0.55)',
-                    borderRadius: '999px',
-                    transition: 'width 0.1s linear',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 4,
                   }}
-                />
-              </div>
+                >
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 9.5,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: 'rgba(255,255,255,0.22)',
+                    }}
+                  >
+                    No tracks loaded
+                  </div>
+                  <div
+                    style={{
+                      height: 2,
+                      background: 'rgba(255,255,255,0.05)',
+                      borderRadius: 999,
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Next */}
             <button
               onClick={() => skip('next')}
-              aria-label="Next track"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: 'rgba(255,255,255,0.4)',
-                padding: 4,
-                display: 'flex',
-                alignItems: 'center',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
+              aria-label="Next"
+              style={btnBase}
+              onMouseEnter={(e) => { if (hasTrack) e.currentTarget.style.color = 'rgba(255,255,255,0.75)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = hasTrack ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.15)' }}
             >
               <SkipIcon direction="next" />
             </button>
 
-            {/* Playing bars indicator */}
-            {playing && (
-              <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 14 }}>
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: 2,
-                      background: 'rgba(255,255,255,0.5)',
-                      borderRadius: '999px',
-                      animation: `music-bar-${i} ${0.7 + i * 0.15}s ease-in-out infinite`,
-                    }}
-                  />
-                ))}
-              </div>
-            )}
+            {/* Playing indicator */}
+            {playing && <MusicBars />}
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        @keyframes music-bar-1 { 0%,100%{height:3px} 50%{height:12px} }
-        @keyframes music-bar-2 { 0%,100%{height:8px} 50%{height:4px} }
-        @keyframes music-bar-3 { 0%,100%{height:5px} 50%{height:10px} }
-      `}</style>
     </>
   )
 }
