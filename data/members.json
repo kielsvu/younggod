@@ -1,0 +1,38 @@
+[
+  {
+    "id": "member-1",
+    "name": "Member One",
+    "username": "@member",
+    "role": "Member",
+    "image": "/images/member-1.png",
+    "bio": "Add the member bio here.",
+    "links": []
+  },
+  {
+    "id": "member-2",
+    "name": "Member Two",
+    "username": "@member",
+    "role": "Member",
+    "image": "/images/member-2.png",
+    "bio": "Add the member bio here.",
+    "links": []
+  },
+  {
+    "id": "member-3",
+    "name": "Member Three",
+    "username": "@member",
+    "role": "Member",
+    "image": "/images/member-3.png",
+    "bio": "Add the member bio here.",
+    "links": []
+  },
+  {
+    "id": "member-4",
+    "name": "Member Four",
+    "username": "@member",
+    "role": "Member",
+    "image": "/images/member-4.png",
+    "bio": "Add the member bio here.",
+    "links": []
+  }
+]
