@@ -11,18 +11,21 @@ interface Props {
 }
 
 const TIER_BADGE: Record<string, { label: string; color: string }> = {
-  hof:    { label: 'Hall of Fame', color: 'rgba(212,175,55,0.7)' },
-  elite:  { label: 'Elite',        color: 'rgba(192,192,192,0.6)' },
-  member: { label: 'Member',       color: 'rgba(255,255,255,0.3)' },
+  mvp:    { label: 'MVP',          color: 'rgba(255,255,255,0.85)' },
+  hof:    { label: 'Hall of Fame', color: 'rgba(212,175,55,0.7)'   },
+  elite:  { label: 'Elite',        color: 'rgba(192,192,192,0.6)'  },
+  member: { label: 'Member',       color: 'rgba(255,255,255,0.3)'  },
 }
 
 const NAME_CLASS: Record<string, string> = {
+  mvp:    'name-wave-mvp',
   hof:    'name-wave-hof',
   elite:  'name-wave-elite',
   member: 'name-wave-normal',
 }
 
 const SPARKLE_CLASS: Record<string, string> = {
+  mvp:    'sparkle-mvp',
   hof:    'sparkle-hof',
   elite:  'sparkle-elite',
   member: 'sparkle-normal',
@@ -61,8 +64,25 @@ export default function MemberCard({ member, index }: Props) {
   const [imgError, setImgError] = useState(false)
   const badge = TIER_BADGE[member.tier] ?? TIER_BADGE.member
   const nameClass = NAME_CLASS[member.tier] ?? NAME_CLASS.member
-  const isHof = member.tier === 'hof'
+  const isMvp   = member.tier === 'mvp'
+  const isHof   = member.tier === 'hof'
   const isElite = member.tier === 'elite'
+
+  const borderColor = isMvp
+    ? 'rgba(255,255,255,0.2)'
+    : isHof
+    ? 'rgba(212,175,55,0.12)'
+    : isElite
+    ? 'rgba(255,255,255,0.07)'
+    : 'rgba(255,255,255,0.04)'
+
+  const avatarBorder = isMvp
+    ? '2px solid rgba(255,255,255,0.35)'
+    : isHof
+    ? '1.5px solid rgba(212,175,55,0.3)'
+    : isElite
+    ? '1.5px solid rgba(255,255,255,0.12)'
+    : '1px solid rgba(255,255,255,0.06)'
 
   return (
     <motion.div
@@ -73,53 +93,63 @@ export default function MemberCard({ member, index }: Props) {
       style={{ position: 'relative' }}
     >
       <div
-        className={isHof ? 'card-glow' : ''}
+        className={isMvp ? 'card-mvp' : isHof ? 'card-glow' : ''}
         style={{
           position: 'relative',
-          background: 'rgba(7,7,7,0.85)',
-          border: `1px solid ${isHof ? 'rgba(212,175,55,0.12)' : isElite ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0.04)'}`,
+          background: isMvp ? 'rgba(10,10,10,0.95)' : 'rgba(7,7,7,0.85)',
+          border: `1px solid ${borderColor}`,
           borderRadius: 20,
-          padding: '28px 22px 22px',
+          padding: isMvp ? '32px 24px 24px' : '28px 22px 22px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: 10,
           overflow: 'hidden',
           ...(isElite ? { animation: 'onyx-pulse 4s ease-in-out infinite' } : {}),
+          ...(isMvp ? { boxShadow: '0 0 40px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.08)' } : {}),
         }}
       >
-        {/* Sparkle particles for HOF/Elite */}
-        {(isHof || isElite) && <Sparkles tier={member.tier} />}
+        {/* Sparkles for MVP / HOF / Elite */}
+        {(isMvp || isHof || isElite) && <Sparkles tier={member.tier} />}
 
         {/* Silver shine for elite */}
         {isElite && (
           <div
             className="silver-shine"
+            style={{ position: 'absolute', inset: 0, opacity: 0.5, pointerEvents: 'none', borderRadius: 'inherit' }}
+          />
+        )}
+
+        {/* MVP crown */}
+        {isMvp && (
+          <div
             style={{
               position: 'absolute',
-              inset: 0,
-              opacity: 0.5,
-              pointerEvents: 'none',
-              borderRadius: 'inherit',
+              top: 12,
+              right: 14,
+              fontFamily: 'var(--font-mono)',
+              fontSize: 8,
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.35)',
             }}
-          />
+          >
+            ✦ mvp
+          </div>
         )}
 
         {/* Avatar */}
         <div
           style={{
             position: 'relative',
-            width: 80,
-            height: 80,
+            width: isMvp ? 90 : 80,
+            height: isMvp ? 90 : 80,
             borderRadius: '50%',
-            border: isHof
-              ? '1.5px solid rgba(212,175,55,0.3)'
-              : isElite
-              ? '1.5px solid rgba(255,255,255,0.12)'
-              : '1px solid rgba(255,255,255,0.06)',
+            border: avatarBorder,
             background: 'rgba(255,255,255,0.04)',
             overflow: 'hidden',
             flexShrink: 0,
+            ...(isMvp ? { boxShadow: '0 0 20px rgba(255,255,255,0.08)' } : {}),
           }}
         >
           {!imgError ? (

@@ -61,8 +61,9 @@ function Divider() {
 }
 
 export default function Members() {
-  const hof    = useMemo(() => members.filter((m) => m.tier === 'hof'), [])
-  const elite  = useMemo(() => members.filter((m) => m.tier === 'elite'), [])
+  const mvp     = useMemo(() => members.filter((m) => m.tier === 'mvp').slice(0, 3), [])
+  const hof     = useMemo(() => members.filter((m) => m.tier === 'hof'), [])
+  const elite   = useMemo(() => members.filter((m) => m.tier === 'elite'), [])
   const regular = useMemo(() => members.filter((m) => m.tier === 'member'), [])
 
   // Marquee list — all members doubled for seamless loop
@@ -91,6 +92,37 @@ export default function Members() {
       />
 
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto' }}>
+
+        {/* ─── MVP ─────────────────────────────────────────────────────── */}
+        {mvp.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 1, ease: EASE }}
+            style={{ textAlign: 'center', marginBottom: 8 }}
+          >
+            <SectionLabel>✦ most valuable players</SectionLabel>
+            <SectionTitle>The Top Three</SectionTitle>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: `repeat(${Math.min(mvp.length, 3)}, minmax(0, 1fr))`,
+                gap: 24,
+                maxWidth: mvp.length === 1 ? 300 : mvp.length === 2 ? 600 : 860,
+                margin: '0 auto',
+                justifyItems: 'center',
+              }}
+            >
+              {mvp.map((m, i) => (
+                <MemberCard key={m.id} member={m} index={i} />
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {mvp.length > 0 && (hof.length > 0 || elite.length > 0 || regular.length > 0) && <Divider />}
 
         {/* ─── Hall of Fame ────────────────────────────────────────────── */}
         {hof.length > 0 && (
