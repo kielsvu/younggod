@@ -1,4 +1,4 @@
-export type MemberTier = 'hof' | 'elite' | 'member'
+export type MemberTier = 'mvp' | 'hof' | 'elite' | 'member'
 
 export interface Member {
   id: string
