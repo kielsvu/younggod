@@ -34,7 +34,7 @@ export const members: Member[] = [
   {
     id: 'member-cass',
     username: 'cass',
-    displayName: 'Cass',
+    displayName: 'cass',
     avatar: 'https://cdn.discordapp.com/embed/avatars/2.png',
     tier: 'member',
     role: 'Member',
@@ -45,7 +45,7 @@ export const members: Member[] = [
   {
     id: 'member-jake',
     username: 'jake',
-    displayName: 'Jake',
+    displayName: 'jake',
     avatar: 'https://cdn.discordapp.com/embed/avatars/3.png',
     tier: 'member',
     role: 'Member',
