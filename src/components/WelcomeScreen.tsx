@@ -138,7 +138,7 @@ export default function WelcomeScreen() {
             textTransform: 'uppercase',
           }}
         >
-          discord.gg/revgng
+          discord.gg/ygng
         </motion.div>
       </div>
     </div>
