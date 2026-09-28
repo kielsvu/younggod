@@ -112,7 +112,7 @@ export default function Members() {
             transition={{ duration: 1, ease: EASE }}
             style={{ textAlign: 'center', marginBottom: 8 }}
           >
-            <SectionLabel>✦ most valuable player</SectionLabel>
+            <SectionLabel>✦ most valuable person</SectionLabel>
             <SectionTitle>MVP</SectionTitle>
             <div style={{
               display: 'grid',
