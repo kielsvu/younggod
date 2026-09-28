@@ -146,7 +146,7 @@ export default function Hero({ showApp }: { showApp: boolean }) {
                 filter:         'drop-shadow(0 0 40px rgba(255,255,255,0.08))',
               }}
             >
-              REV
+              YG
             </div>
           </motion.div>
         )}
