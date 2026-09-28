@@ -91,7 +91,7 @@ export default function MemberCard({ member, index }: Props) {
           background: isMvp ? 'rgba(10,10,10,0.95)' : 'rgba(7,7,7,0.85)',
           border: `1px solid ${borderColor}`,
           borderRadius: 20,
-          padding: isMvp ? '32px 24px 24px' : '28px 22px 22px',
+          padding: '32px 24px 24px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -125,8 +125,8 @@ export default function MemberCard({ member, index }: Props) {
         <div
           style={{
             position: 'relative',
-            width: isMvp ? 90 : 80,
-            height: isMvp ? 90 : 80,
+            width: 90,
+            height: 90,
             borderRadius: '50%',
             border: avatarBorder,
             background: 'rgba(255,255,255,0.04)',
@@ -140,7 +140,7 @@ export default function MemberCard({ member, index }: Props) {
               src={member.avatar}
               alt={member.displayName}
               fill
-              sizes="80px"
+              sizes="90px"
               style={{ objectFit: 'cover' }}
               onError={() => setImgError(true)}
               draggable={false}

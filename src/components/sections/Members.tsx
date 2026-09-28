@@ -80,7 +80,7 @@ export default function Members() {
           >
             <SectionLabel>↑ hall of fame</SectionLabel>
             <SectionTitle>Legends</SectionTitle>
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 280px)', gap: 20, maxWidth: 280, margin: '0 auto', justifyItems: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 300px)', gap: 20, maxWidth: 300, margin: '0 auto', justifyItems: 'center' }}>
               {hof.map((member, index) => (
                 <MemberCard key={member.id} member={member} index={index} />
               ))}
@@ -125,13 +125,6 @@ export default function Members() {
                 <MemberCard key={member.id} member={member} index={index} />
               ))}
             </div>
-            <style>{`
-              @media (max-width: 560px) {
-                #members > div > div > div {
-                  grid-template-columns: minmax(0, 1fr) !important;
-                }
-              }
-            `}</style>
           </motion.div>
         )}
       </div>
