@@ -5,31 +5,31 @@ export const config: SiteConfig = {
   description: 'Young God Worldwide',
   enterTitle: 'YOUNG GOD WORLDWIDE',
   enterSubtitle: 'ALAM MO NA GAGAWIN MO',
-  discordUrl: 'https://discord.gg/revgng',
+  discordUrl: 'https://discord.gg/ygng',
 }
 
 export const members: Member[] = [
   {
     id: 'hof-kiel',
     username: 'kiel',
-    displayName: 'Kiel',
+    displayName: 'kiel',
     avatar: 'https://cdn.discordapp.com/embed/avatars/0.png',
     tier: 'hof',
     role: 'Hall of Fame',
-    bio: '',
+    bio: 'founder and the one behind the chaos.',
     joinedAt: '2026-09-28',
-    socials: { discord: 'kiel' },
+    socials: { discord: 'kielstfu' },
   },
   {
     id: 'mvp-sam',
     username: 'sam',
-    displayName: 'Sam',
+    displayName: 'sam',
     avatar: 'https://cdn.discordapp.com/embed/avatars/1.png',
     tier: 'mvp',
-    role: 'Most Valuable Player',
-    bio: '',
+    role: 'Most Valuable Person',
+    bio: 'nuker and server destruction specialist.',
     joinedAt: '2026-09-28',
-    socials: { discord: 'sam' },
+    socials: { discord: 'stfusam' },
   },
   {
     id: 'member-cass',
@@ -38,9 +38,9 @@ export const members: Member[] = [
     avatar: 'https://cdn.discordapp.com/embed/avatars/2.png',
     tier: 'member',
     role: 'Member',
-    bio: '',
+    bio: 'nuker and part of the chaos crew.',
     joinedAt: '2026-09-28',
-    socials: { discord: 'cass' },
+    socials: { discord: 'anghelnicass' },
   },
   {
     id: 'member-jake',
@@ -49,9 +49,9 @@ export const members: Member[] = [
     avatar: 'https://cdn.discordapp.com/embed/avatars/3.png',
     tier: 'member',
     role: 'Member',
-    bio: '',
+    bio: 'nuker and server chaos contributor.',
     joinedAt: '2026-09-28',
-    socials: { discord: 'jake' },
+    socials: { discord: 'vietjake' },
   },
 ]
 
