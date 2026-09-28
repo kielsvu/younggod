@@ -57,6 +57,10 @@ export default function Members() {
   const hof = members.filter((member) => member.tier === 'hof')
   const standardMembers = members.filter((member) => member.tier === 'member')
 
+  // Shared card width so HOF and MVP are identical in size
+  const CARD_WIDTH = 260
+  const CARD_GAP = 20
+
   return (
     <section
       id="members"
@@ -70,6 +74,8 @@ export default function Members() {
       <div className="film-grain" style={{ position: 'absolute', inset: 0, opacity: 0.02, zIndex: 0, pointerEvents: 'none' }} />
 
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto' }}>
+
+        {/* ─── Hall of Fame ─────────────────────────────────────────────── */}
         {hof.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -80,7 +86,14 @@ export default function Members() {
           >
             <SectionLabel>↑ hall of fame</SectionLabel>
             <SectionTitle>Legends</SectionTitle>
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 300px)', gap: 20, maxWidth: 300, margin: '0 auto', justifyItems: 'center' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(${hof.length}, ${CARD_WIDTH}px)`,
+              gap: CARD_GAP,
+              maxWidth: hof.length * CARD_WIDTH + (hof.length - 1) * CARD_GAP,
+              margin: '0 auto',
+              justifyItems: 'stretch',
+            }}>
               {hof.map((member, index) => (
                 <MemberCard key={member.id} member={member} index={index} />
               ))}
@@ -90,6 +103,7 @@ export default function Members() {
 
         {hof.length > 0 && mvp.length > 0 && <Divider />}
 
+        {/* ─── MVP ──────────────────────────────────────────────────────── */}
         {mvp.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -100,7 +114,14 @@ export default function Members() {
           >
             <SectionLabel>✦ most valuable player</SectionLabel>
             <SectionTitle>MVP</SectionTitle>
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 300px)', gap: 24, maxWidth: 300, margin: '0 auto', justifyItems: 'center' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(${Math.min(mvp.length, 3)}, ${CARD_WIDTH}px)`,
+              gap: CARD_GAP,
+              maxWidth: Math.min(mvp.length, 3) * CARD_WIDTH + (Math.min(mvp.length, 3) - 1) * CARD_GAP,
+              margin: '0 auto',
+              justifyItems: 'stretch',
+            }}>
               {mvp.map((member, index) => (
                 <MemberCard key={member.id} member={member} index={index} />
               ))}
@@ -110,6 +131,7 @@ export default function Members() {
 
         {mvp.length > 0 && standardMembers.length > 0 && <Divider />}
 
+        {/* ─── Members ──────────────────────────────────────────────────── */}
         {standardMembers.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -120,7 +142,14 @@ export default function Members() {
           >
             <SectionLabel>✦ members</SectionLabel>
             <SectionTitle>Members</SectionTitle>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 20, maxWidth: 620, margin: '0 auto', justifyItems: 'center' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(auto-fill, ${CARD_WIDTH}px)`,
+              gap: CARD_GAP,
+              maxWidth: 2 * CARD_WIDTH + CARD_GAP,
+              margin: '0 auto',
+              justifyContent: 'center',
+            }}>
               {standardMembers.map((member, index) => (
                 <MemberCard key={member.id} member={member} index={index} />
               ))}
