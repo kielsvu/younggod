@@ -144,7 +144,7 @@ export default function Members() {
             <SectionTitle>Members</SectionTitle>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: `repeat(auto-fill, ${CARD_WIDTH}px)`,
+              gridTemplateColumns: `repeat(2, ${CARD_WIDTH}px)`,
               gap: CARD_GAP,
               maxWidth: 2 * CARD_WIDTH + CARD_GAP,
               margin: '0 auto',
