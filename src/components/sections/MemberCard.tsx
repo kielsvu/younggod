@@ -144,6 +144,7 @@ export default function MemberCard({ member, index }: Props) {
               style={{ objectFit: 'cover' }}
               onError={() => setImgError(true)}
               draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
             />
           ) : (
             <div
