@@ -9,10 +9,10 @@ export const config: SiteConfig = {
 }
 
 // ─── Members ───────────────────────────────────────────────────────────────
-// tier: "mvp"    = MVP — top 3, highest prestige (crimson/white diamond)
-//       "hof"    = Hall of Fame (gold treatment)
-//       "elite"  = Elite member (silver treatment)
-//       "member" = Standard member
+// tier: "mvp"      = MVP — top 3, highest prestige (crimson/white diamond)
+//       "hof"      = Hall of Fame (gold treatment)
+//       "youngGod" = Young God member
+//       "member"   = Standard member
 // avatar: use a Discord CDN URL or a local path under /public/assets/
 // ──────────────────────────────────────────────────────────────────────────
 export const members: Member[] = [
@@ -62,13 +62,13 @@ export const members: Member[] = [
     joinedAt: '2023-01-01',
     socials: { discord: 'placeholder#0000' },
   },
-  // ── Elite ─────────────────────────────────────────────────────────────
+  // ── Young God ─────────────────────────────────────────────────────────
   {
     id: 'elite-1',
     username: 'placeholder_elite',
     displayName: 'Placeholder Elite',
     avatar: 'https://cdn.discordapp.com/embed/avatars/4.png',
-    tier: 'elite',
+    tier: 'youngGod',
     role: 'Co-Founder',
     bio: 'Building something real.',
     joinedAt: '2023-03-15',
