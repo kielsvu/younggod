@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Geist+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  
+  --bg: #000000;
+  --bg-surface: #070707;
+  --bg-card: #0a0a0a;
+  --bg-card-hover: #111111;
+
+  
+  --text-primary: #eeeeee;
+  --text-secondary: #9e9e9e;
+  --text-muted: #555555;
+
+  
+  --border: #111111;
+  --border-subtle: #0b0b0b;
+
+  
+  --metal-chrome: #e8e8e8;
+  --metal-silver: #c0c0c0;
+  --metal-steel: #8a8a9a;
+  --metal-gunmetal: #2a2a35;
+
+  
+  --radius: 0.75rem;
+
+  
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-mono: 'Geist Mono', 'Courier New', monospace;
+}
+
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-cormorant);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+* {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+  caret-color: var(--metal-chrome);
+}
+
+
+
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  animation: grain-drift 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes grain-drift {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(-1px, 1px); }
+  50%       { transform: translate(1px, -1px); }
+  75%       { transform: translate(-1px, -1px); }
+}
+
+
+
+
+.name-wave-founder,
+.name-wave-cofounder,
+.name-wave-core,
+.name-wave-insider,
+.name-wave-younggod {
+  display: inline-block;
+  letter-spacing: 0.05em;
+}
+
+.name-wave-founder {
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, #fff 0%, #cfcfcf 50%, #fff 100%) 0 0 / 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: role-wave 3s ease-in-out infinite;
+}
+
+.name-wave-cofounder {
+  color: #e5e5e5;
+}
+
+.name-wave-core {
+  color: #c9c9c9;
+}
+
+.name-wave-insider {
+  color: #b2b2b2;
+}
+
+.name-wave-younggod {
+  color: #eeeeee;
+}
+
+@keyframes role-wave {
+  0%, 100% { background-position: 200%; }
+  50% { background-position: 0%; }
+}
+
+.card-founder {
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 40px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.card-cofounder {
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.card-core {
+  border: 1px solid rgba(190,190,190,0.12);
+}
+
+.card-insider {
+  border: 1px solid rgba(150,150,150,0.1);
+}
+
+.card-younggod {
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+  align-items: center;
+  gap: 2rem;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+
+.subtitle-breathe {
+  animation: subtitle-breathe 4s ease-in-out infinite;
+}
+
+@keyframes subtitle-breathe {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.7;  transform: scale(1.015); }
+}
+
+
+
+@media (hover: hover) and (pointer: fine) {
+  .enter-title-hover {
+    transition: letter-spacing 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                color 0.8s ease,
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .enter-title-hover:hover {
+    letter-spacing: 0.2em;
+    color: var(--metal-chrome);
+    transform: translateY(-2px);
+  }
+}
+
+
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+
+
+
+
+.name-wave-normal {
+  color: var(--text-primary);
+  display: inline-block;
+}
+
+.member-avatar {
+  width: 90px;
+  height: 90px;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  width: min(100%, 560px);
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.member-grid > * {
+  min-width: 0;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .member-grid {
+    gap: 10px;
+  }
+
+  .member-avatar {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.revshit-thanks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: min(100%, 560px);
+  margin: 28px auto 0;
+  padding: 18px 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  background: rgba(7,7,7,0.72);
+  color: var(--text-primary);
+  text-decoration: none;
+  text-align: left;
+  transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
+}
+
+.revshit-thanks:hover {
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(14,14,14,0.9);
+  transform: translateY(-2px);
+}
+
+.revshit-logo-wrap {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.revshit-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  filter: invert(1);
+  opacity: 0.88;
+}
+
+.revshit-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.revshit-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+.revshit-copy strong {
+  font-family: var(--font-cormorant);
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.revshit-copy > span:last-child {
+  font-family: var(--font-cormorant);
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+}
+
+@media (max-width: 480px) {
+  .revshit-thanks {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .revshit-logo-wrap {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+  }
+}
+
