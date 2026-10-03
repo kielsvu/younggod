@@ -24,7 +24,7 @@ export const members: Member[] = [
     id: 'cofounder-day',
     username: 'day',
     displayName: 'day',
-    avatar: '',
+    avatar: '/assets/ha.jpg',
     roleKey: 'cofounder',
     role: 'Co-Founder',
     bio: 'helped shape Young God from the start.',
@@ -76,7 +76,7 @@ export const revshitThanks = {
   label: 'inspiration / thanks',
   name: 'RevShit',
   description: 'respect to the people who inspired the culture.',
-  imageSrc: 'https://www.helloxorev.com/logo.png',
+  imageSrc: '/assets/revshit.jpg',
 }
 
 export const playlist: Track[] = []
