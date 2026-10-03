@@ -11,10 +11,10 @@ interface Props {
 }
 
 const ROLE_STYLE: Record<MemberRole, { label: string; color: string; className: string; cardClass: string }> = {
-  founder: { label: 'Founder', color: '#D4AF37', className: 'name-wave-founder', cardClass: 'card-founder' },
-  cofounder: { label: 'Co-Founder', color: '#D4AF37', className: 'name-wave-cofounder', cardClass: 'card-cofounder' },
-  insider: { label: 'Insider', color: '#C0C0C0', className: 'name-wave-insider', cardClass: 'card-insider' },
-  younggod: { label: 'Young God', color: '#CD7F32', className: 'name-wave-younggod', cardClass: 'card-younggod' },
+  founder: { label: 'Founder', color: '#FFD86A', className: 'name-wave-founder', cardClass: 'card-founder' },
+  cofounder: { label: 'Co-Founder', color: '#FFD86A', className: 'name-wave-cofounder', cardClass: 'card-cofounder' },
+  insider: { label: 'Insider', color: '#E6E8EB', className: 'name-wave-insider', cardClass: 'card-insider' },
+  younggod: { label: 'Young God', color: '#D88A45', className: 'name-wave-younggod', cardClass: 'card-younggod' },
 }
 
 export default function MemberCard({ member, index }: Props) {
@@ -35,7 +35,7 @@ export default function MemberCard({ member, index }: Props) {
         className={`member-card ${cardClass}`}
         style={{
           position: 'relative',
-          background: 'rgba(7,7,7,0.88)',
+          background: 'rgba(4,4,4,0.96)',
           borderRadius: 20,
           padding: '32px 24px 24px',
           display: 'flex',
@@ -58,7 +58,7 @@ export default function MemberCard({ member, index }: Props) {
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
             color: style.color,
-            opacity: 0.75,
+            opacity: 1,
           }}
         >
           {style.label}
@@ -93,7 +93,7 @@ export default function MemberCard({ member, index }: Props) {
         </div>
 
         {member.bio && (
-          <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: 12.5, color: 'rgba(255,255,255,0.35)', lineHeight: 1.6, textAlign: 'center', maxWidth: 180 }}>
+          <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: 12.5, color: 'rgba(255,255,255,0.58)', lineHeight: 1.6, textAlign: 'center', maxWidth: 180 }}>
             {member.bio}
           </p>
         )}
@@ -102,7 +102,7 @@ export default function MemberCard({ member, index }: Props) {
           {style.label}
         </div>
 
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.18)' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.38)' }}>
           {new Date(member.joinedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
         </div>
       </div>
