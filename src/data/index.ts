@@ -5,7 +5,7 @@ export const config: SiteConfig = {
   description: 'Young God Worldwide',
   enterTitle: 'YOUNG GOD WORLDWIDE',
   enterSubtitle: 'ALAM MO NA GAGAWIN MO',
-  discordUrl: 'https://discord.gg/ygng',
+  discordUrl: 'https://discord.gg/eaVEtShPE3',
 }
 
 export const members: Member[] = [
