@@ -203,7 +203,7 @@ export default function Navbar() {
                 e.currentTarget.style.color = 'rgba(255,255,255,0.45)'
               }}
             >
-              Join Discord
+              ygng
             </a>
           </div>
         )}
@@ -303,7 +303,7 @@ export default function Navbar() {
                 borderTop: '1px solid rgba(255,255,255,0.06)',
               }}
             >
-              Join Discord →
+              ygng →
             </a>
           </motion.div>
         )}
