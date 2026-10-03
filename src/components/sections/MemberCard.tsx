@@ -25,10 +25,10 @@ export default function MemberCard({ member, index }: Props) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.96 }}
+      initial={{ opacity: 0, y: 50, scale: 0.72 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.9, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ type: 'spring', stiffness: 180, damping: 16, mass: 0.8, delay: index * 0.12 }}
       style={{ position: 'relative', width: '100%', minWidth: 0, height: '100%' }}
     >
       <div
