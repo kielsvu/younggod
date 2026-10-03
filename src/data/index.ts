@@ -34,7 +34,7 @@ export const members: Member[] = [
     id: 'insider-keso',
     username: 'keso',
     displayName: 'keso',
-    avatar: 'assets/haha.jpg',
+    avatar: '/assets/haha.jpg',
     roleKey: 'insider',
     role: 'Insider',
     bio: 'an insider with a distinct presence in Young God.',
