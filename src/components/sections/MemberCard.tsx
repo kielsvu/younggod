@@ -20,8 +20,8 @@ const ROLE_STYLE: Record<MemberRole, { label: string; color: string; className: 
 export default function MemberCard({ member, index }: Props) {
   const [imgError, setImgError] = useState(false)
   const style = ROLE_STYLE[member.roleKey]
-  const cardClass = member.username === 'keso' && member.roleKey === 'insider' ? 'card-insider-keso' : style.cardClass
-  const nameClass = member.username === 'keso' && member.roleKey === 'insider' ? 'name-wave-insider-keso' : style.className
+  const cardClass = style.cardClass
+  const nameClass = style.className
 
   return (
     <motion.div
