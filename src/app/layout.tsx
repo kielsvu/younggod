@@ -3,7 +3,7 @@ import './globals.css'
 import { config } from '@/data'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
-const ogImage = '/assets/og-image.jpg'
+const ogImage = 'https://younggod-org.vercel.app/assets/og-image.jpg'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
