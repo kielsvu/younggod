@@ -477,7 +477,7 @@ img {
 
 .org-section-insider .card-insider-keso {
   border-color: rgba(232,232,232,0.62);
-  box-shadow: 0 0 40px rgba(192,192,192,0.10), inset 0 1px 0 rgba(245,245,245,0.14);
+  box-shadow: 0 0 58px rgba(192,192,192,0.24), 0 0 18px rgba(232,232,232,0.18), inset 0 1px 0 rgba(255,255,255,0.24);
 }
 
 .org-section-younggod .card-younggod {
@@ -507,8 +507,8 @@ img {
 }
 
 .org-section-insider .member-card:hover {
-  border-color: rgba(232,232,232,0.82);
-  box-shadow: 0 14px 55px rgba(192,192,192,0.14), inset 0 1px 0 rgba(245,245,245,0.18);
+  border-color: rgba(255,255,255,0.94);
+  box-shadow: 0 14px 55px rgba(192,192,192,0.26), 0 0 28px rgba(232,232,232,0.18), inset 0 1px 0 rgba(255,255,255,0.28);
 }
 
 .org-section-younggod .member-card:hover {
