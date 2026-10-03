@@ -27,17 +27,17 @@ export const members: Member[] = [
     avatar: '',
     roleKey: 'cofounder',
     role: 'Co-Founder',
-    bio: 'built into the core of the organization from the start.',
+    bio: 'helped shape Young God from the start.',
     joinedAt: '2026-09-28',
   },
   {
-    id: 'core-keso',
+    id: 'insider-keso',
     username: 'keso',
     displayName: 'keso',
     avatar: '',
-    roleKey: 'core',
-    role: 'Core Operations',
-    bio: 'keeps the people, plans, and day-to-day operation moving.',
+    roleKey: 'insider',
+    role: 'Insider',
+    bio: 'an insider with a distinct presence in Young God.',
     joinedAt: '2026-09-28',
   },
   {
@@ -47,7 +47,7 @@ export const members: Member[] = [
     avatar: '',
     roleKey: 'insider',
     role: 'Insider',
-    bio: 'part of the inner circle and close to the core.',
+    bio: 'an insider within Young God.',
     joinedAt: '2026-09-28',
   },
   {
@@ -76,7 +76,6 @@ export const revshitThanks = {
   label: 'inspiration / thanks',
   name: 'RevShit',
   description: 'respect to the people who inspired the culture.',
-  href: 'https://www.helloxorev.com/',
   imageSrc: 'https://www.helloxorev.com/logo.png',
 }
 
