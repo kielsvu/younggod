@@ -11,10 +11,10 @@ interface Props {
 }
 
 const ROLE_STYLE: Record<MemberRole, { label: string; color: string; className: string; cardClass: string }> = {
-  founder: { label: 'Founder', color: 'rgba(255,255,255,0.9)', className: 'name-wave-founder', cardClass: 'card-founder' },
-  cofounder: { label: 'Co-Founder', color: 'rgba(255,255,255,0.68)', className: 'name-wave-cofounder', cardClass: 'card-cofounder' },
-  insider: { label: 'Insider', color: 'rgba(150,150,150,0.72)', className: 'name-wave-insider', cardClass: 'card-insider' },
-  younggod: { label: 'Young God', color: 'rgba(255,255,255,0.38)', className: 'name-wave-younggod', cardClass: 'card-younggod' },
+  founder: { label: 'Founder', color: '#D4AF37', className: 'name-wave-founder', cardClass: 'card-founder' },
+  cofounder: { label: 'Co-Founder', color: '#D4AF37', className: 'name-wave-cofounder', cardClass: 'card-cofounder' },
+  insider: { label: 'Insider', color: '#C0C0C0', className: 'name-wave-insider', cardClass: 'card-insider' },
+  younggod: { label: 'Young God', color: '#CD7F32', className: 'name-wave-younggod', cardClass: 'card-younggod' },
 }
 
 export default function MemberCard({ member, index }: Props) {
@@ -32,7 +32,7 @@ export default function MemberCard({ member, index }: Props) {
       style={{ position: 'relative', width: '100%', minWidth: 0, height: '100%' }}
     >
       <div
-        className={cardClass}
+        className={`member-card ${cardClass}`}
         style={{
           position: 'relative',
           background: 'rgba(7,7,7,0.88)',
