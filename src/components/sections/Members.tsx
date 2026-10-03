@@ -2,9 +2,23 @@
 
 import { motion } from 'framer-motion'
 import { members, revshitThanks } from '@/data'
+import type { MemberRole } from '@/types'
 import MemberCard from './MemberCard'
 
 const EASE = [0.22, 1, 0.36, 1] as const
+
+type Group = {
+  title: string
+  label: string
+  roles: MemberRole[]
+  className: string
+}
+
+const groups: Group[] = [
+  { title: 'Leadership', label: 'the ones who built it', roles: ['founder', 'cofounder'], className: 'org-section-leadership' },
+  { title: 'Insiders', label: 'trusted members of young god', roles: ['insider'], className: 'org-section-insider' },
+  { title: 'Young Gods', label: 'young god worldwide', roles: ['younggod'], className: 'org-section-younggod' },
+]
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -33,7 +47,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
-      marginBottom: 48,
+      marginBottom: 18,
     }}>
       {children}
     </h2>
@@ -45,11 +59,6 @@ function MemberGrid({ children }: { children: React.ReactNode }) {
 }
 
 export default function Members() {
-  const orderedMembers = [...members].sort((a, b) => {
-    const order = { founder: 0, cofounder: 1, core: 2, insider: 3, younggod: 4 }
-    return order[a.roleKey] - order[b.roleKey]
-  })
-
   return (
     <section
       id="members"
@@ -72,18 +81,27 @@ export default function Members() {
         >
           <SectionLabel>✦ organization</SectionLabel>
           <SectionTitle>Young God Worldwide</SectionTitle>
-          <MemberGrid>
-            {orderedMembers.map((member, index) => (
-              <MemberCard key={member.id} member={member} index={index} />
-            ))}
-          </MemberGrid>
 
-          <a
-            href={revshitThanks.href}
-            target="_blank"
-            rel="noreferrer"
-            className="revshit-thanks"
-          >
+          <div className="organization-sections">
+            {groups.map((group, groupIndex) => {
+              const groupMembers = members.filter(member => group.roles.includes(member.roleKey))
+              return (
+                <section key={group.title} className={`organization-section ${group.className}`}>
+                  <div className="organization-section-heading">
+                    <span>{group.label}</span>
+                    <h3>{group.title}</h3>
+                  </div>
+                  <MemberGrid>
+                    {groupMembers.map((member, index) => (
+                      <MemberCard key={member.id} member={member} index={index + groupIndex * 2} />
+                    ))}
+                  </MemberGrid>
+                </section>
+              )
+            })}
+          </div>
+
+          <div className="revshit-thanks" aria-label={`${revshitThanks.label}: ${revshitThanks.name}`}>
             <div className="revshit-logo-wrap">
               <img
                 src={revshitThanks.imageSrc}
@@ -97,7 +115,7 @@ export default function Members() {
               <strong>{revshitThanks.name}</strong>
               <span>{revshitThanks.description}</span>
             </div>
-          </a>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -13,14 +13,15 @@ interface Props {
 const ROLE_STYLE: Record<MemberRole, { label: string; color: string; className: string; cardClass: string }> = {
   founder: { label: 'Founder', color: 'rgba(255,255,255,0.9)', className: 'name-wave-founder', cardClass: 'card-founder' },
   cofounder: { label: 'Co-Founder', color: 'rgba(255,255,255,0.68)', className: 'name-wave-cofounder', cardClass: 'card-cofounder' },
-  core: { label: 'Core Operations', color: 'rgba(190,190,190,0.72)', className: 'name-wave-core', cardClass: 'card-core' },
-  insider: { label: 'Insider', color: 'rgba(205,127,50,0.88)', className: 'name-wave-insider', cardClass: 'card-insider' },
+  insider: { label: 'Insider', color: 'rgba(150,150,150,0.72)', className: 'name-wave-insider', cardClass: 'card-insider' },
   younggod: { label: 'Young God', color: 'rgba(255,255,255,0.38)', className: 'name-wave-younggod', cardClass: 'card-younggod' },
 }
 
 export default function MemberCard({ member, index }: Props) {
   const [imgError, setImgError] = useState(false)
   const style = ROLE_STYLE[member.roleKey]
+  const cardClass = member.username === 'keso' && member.roleKey === 'insider' ? 'card-insider-keso' : style.cardClass
+  const nameClass = member.username === 'keso' && member.roleKey === 'insider' ? 'name-wave-insider-keso' : style.className
 
   return (
     <motion.div
@@ -31,7 +32,7 @@ export default function MemberCard({ member, index }: Props) {
       style={{ position: 'relative', width: '100%', minWidth: 0, height: '100%' }}
     >
       <div
-        className={style.cardClass}
+        className={cardClass}
         style={{
           position: 'relative',
           background: 'rgba(7,7,7,0.88)',
@@ -83,7 +84,7 @@ export default function MemberCard({ member, index }: Props) {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <div className={style.className} style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 500, fontSize: 17, marginBottom: 3 }}>
+          <div className={nameClass} style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 500, fontSize: 17, marginBottom: 3 }}>
             {member.displayName}
           </div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: style.color, marginBottom: 2 }}>
