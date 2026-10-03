@@ -1,4 +1,4 @@
-export type MemberRole = 'founder' | 'cofounder' | 'core' | 'insider' | 'younggod'
+export type MemberRole = 'founder' | 'cofounder' | 'insider' | 'younggod'
 
 export interface Member {
   id: string
