@@ -14,7 +14,7 @@ const ROLE_STYLE: Record<MemberRole, { label: string; color: string; className: 
   founder: { label: 'Founder', color: 'rgba(255,255,255,0.9)', className: 'name-wave-founder', cardClass: 'card-founder' },
   cofounder: { label: 'Co-Founder', color: 'rgba(255,255,255,0.68)', className: 'name-wave-cofounder', cardClass: 'card-cofounder' },
   core: { label: 'Core Operations', color: 'rgba(190,190,190,0.72)', className: 'name-wave-core', cardClass: 'card-core' },
-  insider: { label: 'Insider', color: 'rgba(150,150,150,0.72)', className: 'name-wave-insider', cardClass: 'card-insider' },
+  insider: { label: 'Insider', color: 'rgba(205,127,50,0.88)', className: 'name-wave-insider', cardClass: 'card-insider' },
   younggod: { label: 'Young God', color: 'rgba(255,255,255,0.38)', className: 'name-wave-younggod', cardClass: 'card-younggod' },
 }
 
