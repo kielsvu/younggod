@@ -121,15 +121,6 @@ textarea {
   text-shadow: 0 0 16px rgba(230,232,235,0.22);
 }
 
-.name-wave-insider-keso {
-  background: linear-gradient(90deg, #AEB3B8 0%, #F8FAFC 38%, #FFFFFF 50%, #D9DDE1 68%, #9EA4AA 100%) 0 0 / 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 22px rgba(235,238,242,0.34);
-  animation: role-wave 3.2s ease-in-out infinite;
-}
-
 .name-wave-younggod {
   color: #D88A45;
   text-shadow: 0 0 16px rgba(216,138,69,0.24);
@@ -435,8 +426,7 @@ img {
 }
 
 
-.org-section-insider .member-grid > * .card-insider,
-.org-section-insider .member-grid > * .card-insider-keso {
+.org-section-insider .member-grid > * .card-insider {
   background: linear-gradient(145deg, rgba(18,19,21,0.98), rgba(4,4,5,0.98));
 }
 
@@ -466,11 +456,6 @@ img {
 .org-section-insider .card-insider {
   border-color: rgba(230,232,235,0.78);
   box-shadow: 0 0 44px rgba(230,232,235,0.16), inset 0 1px 0 rgba(255,255,255,0.22);
-}
-
-.org-section-insider .card-insider-keso {
-  border-color: rgba(248,250,252,0.88);
-  box-shadow: 0 0 72px rgba(230,232,235,0.36), 0 0 28px rgba(248,250,252,0.28), inset 0 1px 0 rgba(255,255,255,0.34);
 }
 
 .org-section-younggod .card-younggod {
