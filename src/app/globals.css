@@ -123,7 +123,7 @@ textarea {
 }
 
 .name-wave-insider {
-  color: #b2b2b2;
+  color: #CD7F32;
 }
 
 .name-wave-younggod {
@@ -149,7 +149,7 @@ textarea {
 }
 
 .card-insider {
-  border: 1px solid rgba(150,150,150,0.1);
+  border: 1px solid rgba(205,127,50,0.16);
 }
 
 .card-younggod {
@@ -338,3 +338,108 @@ img {
   }
 }
 
+
+.organization-sections {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(52px, 8vw, 86px);
+}
+
+.organization-section {
+  position: relative;
+  padding: 28px 0 0;
+}
+
+.organization-section-heading {
+  margin: 0 auto 22px;
+  text-align: center;
+}
+
+.organization-section-heading span {
+  display: block;
+  margin-bottom: 7px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.organization-section-heading h3 {
+  margin: 0;
+  font-family: var(--font-cormorant);
+  font-size: clamp(1.45rem, 3.5vw, 2.15rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.org-section-leadership .organization-section-heading h3 {
+  color: #f4f4f4;
+}
+
+.org-section-core .organization-section-heading h3 {
+  color: #d8d8d8;
+}
+
+.org-section-insider .organization-section-heading h3 {
+  color: #CD7F32;
+}
+
+.org-section-younggod .organization-section-heading h3 {
+  color: #999999;
+}
+
+.org-section-leadership .member-grid {
+  padding: 2px;
+}
+
+.org-section-leadership .member-grid > * .card-founder,
+.org-section-leadership .member-grid > * .card-cofounder {
+  background: linear-gradient(145deg, rgba(25,25,25,0.96), rgba(5,5,5,0.94));
+}
+
+.org-section-core .member-grid > * .card-core {
+  background: linear-gradient(145deg, rgba(18,20,23,0.96), rgba(5,5,5,0.94));
+}
+
+.org-section-insider .member-grid > * .card-insider {
+  background: linear-gradient(145deg, rgba(38,25,14,0.96), rgba(7,5,3,0.94));
+}
+
+.org-section-younggod .member-grid > * .card-younggod {
+  background: linear-gradient(145deg, rgba(12,12,12,0.96), rgba(3,3,3,0.94));
+}
+
+.revshit-thanks {
+  cursor: default;
+}
+
+.revshit-thanks:hover {
+  transform: none;
+}
+
+.org-section-leadership .card-founder {
+  border-color: rgba(255,255,255,0.28);
+  box-shadow: 0 0 44px rgba(255,255,255,0.055), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.org-section-leadership .card-cofounder {
+  border-color: rgba(170,150,255,0.22);
+  box-shadow: 0 0 34px rgba(130,110,255,0.035), inset 0 1px 0 rgba(220,210,255,0.06);
+}
+
+.org-section-core .card-core {
+  border-color: rgba(110,170,255,0.2);
+  box-shadow: 0 0 34px rgba(80,140,255,0.03), inset 0 1px 0 rgba(180,215,255,0.055);
+}
+
+.org-section-insider .card-insider {
+  border-color: rgba(205,127,50,0.28);
+  box-shadow: 0 0 34px rgba(205,127,50,0.035), inset 0 1px 0 rgba(255,205,145,0.055);
+}
+
+.org-section-younggod .card-younggod {
+  border-color: rgba(255,105,130,0.15);
+  box-shadow: 0 0 34px rgba(220,70,100,0.02), inset 0 1px 0 rgba(255,190,200,0.04);
+}
