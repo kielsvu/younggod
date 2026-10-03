@@ -99,7 +99,6 @@ textarea {
 
 .name-wave-founder,
 .name-wave-cofounder,
-.name-wave-core,
 .name-wave-insider,
 .name-wave-younggod {
   display: inline-block;
@@ -118,12 +117,18 @@ textarea {
   color: #e5e5e5;
 }
 
-.name-wave-core {
-  color: #c9c9c9;
+
+.name-wave-insider,
+.name-wave-insider-keso {
+  color: #cd7f32;
 }
 
-.name-wave-insider {
-  color: #CD7F32;
+.name-wave-insider-keso {
+  background: linear-gradient(90deg, #9a5b24 0%, #e0a15a 50%, #9a5b24 100%) 0 0 / 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: role-wave 3.5s ease-in-out infinite;
 }
 
 .name-wave-younggod {
@@ -144,12 +149,9 @@ textarea {
   border: 1px solid rgba(255,255,255,0.14);
 }
 
-.card-core {
-  border: 1px solid rgba(190,190,190,0.12);
-}
 
 .card-insider {
-  border: 1px solid rgba(205,127,50,0.16);
+  border: 1px solid rgba(150,150,150,0.1);
 }
 
 .card-younggod {
@@ -378,12 +380,9 @@ img {
   color: #f4f4f4;
 }
 
-.org-section-core .organization-section-heading h3 {
-  color: #d8d8d8;
-}
 
 .org-section-insider .organization-section-heading h3 {
-  color: #CD7F32;
+  color: #cd7f32;
 }
 
 .org-section-younggod .organization-section-heading h3 {
@@ -399,12 +398,10 @@ img {
   background: linear-gradient(145deg, rgba(25,25,25,0.96), rgba(5,5,5,0.94));
 }
 
-.org-section-core .member-grid > * .card-core {
-  background: linear-gradient(145deg, rgba(18,20,23,0.96), rgba(5,5,5,0.94));
-}
 
-.org-section-insider .member-grid > * .card-insider {
-  background: linear-gradient(145deg, rgba(38,25,14,0.96), rgba(7,5,3,0.94));
+.org-section-insider .member-grid > * .card-insider,
+.org-section-insider .member-grid > * .card-insider-keso {
+  background: linear-gradient(145deg, rgba(32,22,13,0.96), rgba(7,5,3,0.94));
 }
 
 .org-section-younggod .member-grid > * .card-younggod {
@@ -429,14 +426,15 @@ img {
   box-shadow: 0 0 34px rgba(130,110,255,0.035), inset 0 1px 0 rgba(220,210,255,0.06);
 }
 
-.org-section-core .card-core {
-  border-color: rgba(110,170,255,0.2);
-  box-shadow: 0 0 34px rgba(80,140,255,0.03), inset 0 1px 0 rgba(180,215,255,0.055);
-}
 
 .org-section-insider .card-insider {
-  border-color: rgba(205,127,50,0.28);
-  box-shadow: 0 0 34px rgba(205,127,50,0.035), inset 0 1px 0 rgba(255,205,145,0.055);
+  border-color: rgba(205,127,50,0.26);
+  box-shadow: 0 0 34px rgba(205,127,50,0.04), inset 0 1px 0 rgba(255,210,150,0.07);
+}
+
+.org-section-insider .card-insider-keso {
+  border-color: rgba(224,161,90,0.42);
+  box-shadow: 0 0 40px rgba(205,127,50,0.07), inset 0 1px 0 rgba(255,220,175,0.1);
 }
 
 .org-section-younggod .card-younggod {
